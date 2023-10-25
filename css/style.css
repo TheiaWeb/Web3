@@ -1,0 +1,138 @@
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {    
+
+    /*========== Color ==========*/
+
+    --purple: #9600FA;
+    --black: #06050A;
+    --green: #58D7AD;
+    --white: #f9f9f9;
+    --deep-purple: #421660;
+
+    
+    /*========== Font family ==========*/
+    --inter: 'Inter', sans-serif;
+    --montserrat: 'Montserrat', sans-serif;
+
+}
+
+/*==================== BASE ====================*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1,h2, h3, h4 {
+    font-family: var(--montserrat);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+body {
+    background-color: var(--deep-purple);
+    padding: 0 100px;
+}
+
+
+/*==================== NAV ====================*/
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+}
+.nav__logo {
+    padding-right: 50px;
+}
+ul.nav__links  {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+ul.nav__links  li {
+    color: #FFF;
+    text-align: center;
+    font-family: var(--inter);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+ul.nav__links  li.nav__logo {
+    font-size: 24px;
+}
+.nav__cta {
+    padding: 10px 50px;
+    background-color: var(--white);
+    color: var(--deep-purple);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 15px;
+}
+
+
+/*==================== HEADER ====================*/
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    height: 90vh;
+}
+
+.header__left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 48%;
+}
+
+.header__left-title {
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: 64px;
+}
+.header__left-title span {
+    color: var(--purple);
+}
+
+.header__left-subtitle {
+    color: var(--white);
+    font-family: var(--montserrat);
+    font-size: 18px;
+    font-weight: 500;
+}
+.header__left-btn {
+    padding: 17px 40px;
+    background-color: var(--white);
+    color: var(--deep-purple);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 15px;
+    max-width: 267px;
+    text-align: center;
+}
