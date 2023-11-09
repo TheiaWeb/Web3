@@ -3,35 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theia Web 3.0 - The No-Code Framework</title>
+    <title>Third Space - The No-Code Framework</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="images/x-icon" href="img/logo-colors.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/746151b356.js" crossorigin="anonymous"></script>
+  
+
 </head>
 <body>
     
-    <nav>
-        <ul class="nav__links">
-            <li class="nav__logo">LOGO</li>
-            <li>LINK</li>
-            <li>LINK</li>
-            <li>LINK</li>
-            <li>LINK</li>
-        </ul>
-        <a href="" class="nav__cta">COMING</a>
-        
+    <nav class="">
+        <div class="navbar__pc">
+            <ul class="nav__links">
+                <li class="nav__logo"><a href="index.html"><img src="img/logo-white.png" alt="">Third Space</a></li>
+                <li><a href="#steps">How does it work ?</a></li>
+                <li><a href="#socials">Follow Us</a></li>
+            </ul>
+            <a href="#socials" class="nav__cta">Get early acces now</a>
+        </div>
 
-    </nav>
+        <div class="navbar__mobile animate__fadeInLeft">
+            <div class="navbar__mobile-head section">
+                <li class="nav__logo"><a href="index.html"><img src="img/logo-white.png" alt="">Third Space</a></li>
 
-    <header>
+                <img class="" src="img/logo.png" alt="">
+                <img class="navbar__mobile-menuIcon" id="menuIcon" src="img/navbar-burger.png" width="24px" height="21px" alt="" onclick="toggleMenu()">
+            </div>
+    
+            <div class="navbar__mobile-content" id="mobileMenu">
+                <ul class="nav__links">
+                    <li><a href="#steps">How does it work ?</a></li>
+                    <li><a href="#socials">Follow Us</a></li>
+                    <a href="#socials" class="nav__cta">Get early acces now</a>
+
+                </ul>
+            </div>
+        </div>
+      </nav>   
+
+    
+       
+
+     
+            
+
+
+    <header class="section">
         <div class="header__left">
-            <h1 class="header__left-title">suspendisse potenti nullam lorem, <span>tortor vitae</span></h1>
-            <p class="header__left-subtitle">Suspendisse potenti nullam ac tortor vitae netus et malesuada fames ac turpis egestas integer eget aliquet</p>
-            <a href=""  class="header__left-btn">Get early acces now</a>
+            <h1 class="header__left-title">Web3's Easiest Builder. <span class="purple-span">Dive in Code-Free.</span></h1>
+            <p class="header__left-subtitle">We, at Third Space, will co-construct the project with you! We want to give everyone the opportunity to boost their business on Web 3.</p>
+            <a href="#socials" class="header__left-btn">Get early acces now</a>
         </div>
         <div class="header__right">
             <img src="" alt="">
-        </div>
+        </div> 
+       
     </header>
+    <img src="img/body__separation-0.png" alt="" class="header__img">
+
+<section class="steps__section" id="steps">
+    <div class="steps__content section">
+        <h2 class="steps__title"><span class="purple-span">Build and launch</span> your web3 site effortlessly!</h2>
+        <div class="steps__content-row">
+            <div class="steps__box">
+                <img src="img/steps-one.png" alt="">
+                <h3 class="steps__box-title">Imagine your perfect site</h3>
+                <p class="steps__box-text">Dream up your ideal website—no design or technical limits. Envision the ultimate online presence.</p>
+            </div>
+            <div class="steps__box">
+                <img src="img/steps-two.png" alt="">
+                <h3 class="steps__box-title">Create it quickly and easily</h3>
+                <p class="steps__box-text">Utilize intuitive drag-and-drop tools to bring your vision to life, effortlessly—no coding required.</p>
+            </div>
+            <div class="steps__box">
+                <img src="img/steps-three.png" alt="">
+                <h3 class="steps__box-title">Propel it into blockchain</h3>
+                <p class="steps__box-text">Seamlessly integrate your site with Web3 technology, unlocking decentralized features and next-gen capabilities.</p>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+    <section class="socials__section" id="socials">
+        <img src="img/body__separation-180.png" alt="" class="socials__img-top">
+
+        <div class="socials__content section">
+            <div class="socials__left">
+                <h3 class="socials__title">Keep up to date</h3>
+                <p class="socials__text">Join our growing community of no-code site builders. Be the first to test it! </p>
+                <div class="socials__row">
+                    <a href=""><img src="img/twitter-logo.png" alt="" class="socials__links"></a>
+                    <a href=""><img src="img/discord-logo.png" alt="" class="socials__links"></a>
+                    <a href=""><img src="img/linkedin-logo.png" alt="" class="socials__links"></a>
+                 </div>
+                </div>
+                <div class="socials__right">
+                    <h3 class="socials__title">Get early access</h3>
+                    <p class="socials__text">Be among the first to test our website builder for Web3 and subscribe to our newsletter.</p>
+
+                    <!--HTML FORM FOR NEWSLETTER SUBSCRIPTION + MODAL VALIDATION-->
+                    <form id="newsletterForm" class="socials__newsletter">
+                        <input type="email" id="emailInput" placeholder="Enter your email" required>
+                        <button type="submit">Register</button>
+                    </form>
+                    <p class="newsletter-send">Thank you for your registration</p>
+
+                    <p class="socials__subtext">By subscribing you agree to receive emails from Third Space.</p>
+                 </div>
+            </div>
+            
+        <img src="img/body__separation-0.png" alt="" class="socials__img-bottom">
+    </section>
+
+    <footer>
+        <div class="footer__content section">
+            <div class="footer__left">
+                <li class="footer__logo"><img src="img/logo-white.png" alt="">Third Space</li>
+                <p class="footer__text">We, at Third Space, will co-construct the project with you!</p>
+            </div>
+            <div class="footer__links">
+                <a href="" target="_blank"><img src="img/twitter-logo-footer.svg" alt=""></a>
+                <a href="" target="_blank"><img src="img/discord-logo-footer.svg" alt=""></a>
+                <a href="" target="_blank"><img src="img/linkedin-logo-footer.svg" alt=""></a>
+            </div>
+
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; ThirdSpace 2023 - <span><a href="privacy.html" target="_blank" class="legals__link">Privacy policy</a></span></p>
+        </div>
+    </footer>
+
+
 
     <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('nav');
+            navbar.classList.toggle('sticky-navbar', window.scrollY > 0);
+        });
+    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script type="text/javascript">
+        new WOW().init()
+      </script>
+    
+    
 </body>
 </html>
