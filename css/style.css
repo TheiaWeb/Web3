@@ -485,7 +485,7 @@ background: linear-gradient(113deg, #E78BF6 0%, #9600FA 100%);
     font-family: var(--inter);
     font-size: 12px;
     font-weight: 400;
-    margin-top: -20px;
+    margin-top: -10px;
     display: none;
 }
 .newsletter-send-yes {
