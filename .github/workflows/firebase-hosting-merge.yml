@@ -18,3 +18,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FORMTHEIA }}'
           channelId: live
           projectId: formtheia
+          siteId: thalia-v1
