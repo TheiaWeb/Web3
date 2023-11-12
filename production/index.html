@@ -13,18 +13,18 @@
 </head>
 <body>
     
-    <nav class="">
+    <nav class="navbar__padding">
         <div class="navbar__pc">
             <ul class="nav__links">
                 <li class="nav__logo"><a href="index.html"><img src="img/logo-white.png" alt="">Third Space</a></li>
-                <li><a href="#steps">How does it work ?</a></li>
-                <li><a href="#socials">Follow Us</a></li>
+                <li><a href="#steps" class="nav__links-btn">How does it work ?</a></li>
+                <li><a href="#socials" class="nav__links-btn">Follow Us</a></li>
             </ul>
             <a href="#socials" class="nav__cta">Get early acces now</a>
         </div>
 
         <div class="navbar__mobile animate__fadeInLeft">
-            <div class="navbar__mobile-head section">
+            <div class="navbar__mobile-head ">
                 <li class="nav__logo"><a href="index.html"><img src="img/logo-white.png" alt="">Third Space</a></li>
 
                 <img class="" src="img/logo.png" alt="">
@@ -33,8 +33,8 @@
     
             <div class="navbar__mobile-content" id="mobileMenu">
                 <ul class="nav__links">
-                    <li><a href="#steps">How does it work ?</a></li>
-                    <li><a href="#socials">Follow Us</a></li>
+                    <li><a href="#steps" class="nav__links-btn">How does it work ?</a></li>
+                    <li><a href="#socials" class="nav__links-btn">Follow Us</a></li>
                     <a href="#socials" class="nav__cta">Get early acces now</a>
 
                 </ul>
@@ -56,7 +56,10 @@
             <a href="#socials" class="header__left-btn">Get early acces now</a>
         </div>
         <div class="header__right">
-            <img src="" alt="">
+            <video width="90%" autoplay muted controls>
+                <source src="img/trailer__thirdspace.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>        
         </div> 
        
     </header>
@@ -118,7 +121,7 @@
     </section>
 
     <footer>
-        <div class="footer__content section">
+        <div class="footer__content">
             <div class="footer__left">
                 <li class="footer__logo"><img src="img/logo-white.png" alt="">Third Space</li>
                 <p class="footer__text">We, at Third Space, will co-construct the project with you!</p>
@@ -145,6 +148,7 @@
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('nav');
             navbar.classList.toggle('sticky-navbar', window.scrollY > 0);
+            
         });
     </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
