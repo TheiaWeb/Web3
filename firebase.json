@@ -3,15 +3,6 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "hosting": {
-    "target":"web3",
-    "public": "production",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
   "functions": [
     {
       "source": "functions",
@@ -24,7 +15,12 @@
       ]
     }
   ],
-  "database": {
-    "rules": "database.rules.json"
+  "hosting": {
+    "public": "production",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }

@@ -1,18 +1,5 @@
 {
   "projects": {
-    "default": "formtheia"
-  },
-  "targets": {
-    "formtheia": {
-      "hosting": {
-        "web3": [
-          "thalia-v1"
-        ],
-        "theia": [
-          "formtheia"
-        ]
-      }
-    }
-  },
-  "etags": {}
+    "default": "thirdweb"
+  }
 }
