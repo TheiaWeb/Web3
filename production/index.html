@@ -151,25 +151,25 @@
     </footer>
 
 
-    <div class="cookie__box">
-        <img   class="cookie__box-arrow" onclick="toggleCookiePanel()" src="img/arrow__cookie.png" alt="">   
+    <div class="cookie__box" id="cookie__box">
+        <img   class="cookie__box-arrow"  src="img/arrow__cookie.png" alt="">   
             <div id="cookieBanner">
                 <img src="img/cookie.png" alt="Cookie" />
                 <div class="cookie__box-switch"  title="We collect e-mail addresses when you subscribe to our newsletter.">
                     <p>Necessary</p>
                     <label class="switch">
-                        <input type="checkbox" id="statistic-switch">
+                        <input type="checkbox" id="Necessary-switch" checked>
                         <span class="slider round"></span>
                       </label>
                 </div>
                 <div class="cookie__box-switch"  title="Google Analytics enables continuous improvement of the user experience">
                     <p title="Nous collectons les adresses mail pour la newsletter">Analytics</p>
                     <label class="switch">
-                        <input type="checkbox" id="statistic-switch">
+                        <input type="checkbox" id="Analytics-switch" checked>
                         <span class="slider round"></span>
                       </label>
                 </div>
-                <button class="cookie__save-btn">Save</button>
+                <button class="cookie__save-btn" id="save-button">Save</button>
             
             </div>
         </div>
@@ -177,8 +177,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
     <script type="module" src="js/firebase-config.js"></script>
-    <script type="module" src="js/firebase.js"></script>
-    <script type="module" src="js/script.js"></script>
+    <script src="js/script.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('nav');
