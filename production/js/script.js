@@ -86,5 +86,3 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
 });
 
 
-=======
->>>>>>> Stashed changes
