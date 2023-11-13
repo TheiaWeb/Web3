@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "thirdweb"
-  }
+    "default": "thirdweb-5b016",
+    "test": "thirdweb-5b016"
+  },
+  "targets": {},
+  "etags": {}
 }

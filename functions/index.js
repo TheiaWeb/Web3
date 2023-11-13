@@ -18,44 +18,42 @@ const logger = require("firebase-functions/logger");
 //   response.send("Hello from Firebase!");
 // });
 
-
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const nodemailer = require('nodemailer');
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const nodemailer = require("nodemailer");
 
 admin.initializeApp();
+const firestore = admin.firestore();
 
-// Configure Nodemailer with your email service credentials
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        type: 'OAuth2',
-        user: functions.config().emailservice.user,
-        clientId: '891972920996-r9jjg81ou5f3bhkh5h69rrhl54q73ln2.apps.googleusercontent.com',
-        clientSecret: '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',
-        refreshToken: 'VOTRE_REFRESH_TOKEN',
-        accessToken: 'VOTRE_ACCESS_TOKEN', // Optionnel, généré automatiquement
+exports.sendThankYouEmail = functions.firestore
+  .document("users/{userId}")
+  .onCreate(async (snapshot, context) => {
+     try {
+    const data = snapshot.data();
+    const userEmail = data.email;
+
+    // Create a Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "3space.contact@gmail.com",
+        pass: "ishiwcinengmfhjc",
     },
 });
-exports.sendEmailConfirmation = functions.firestore
-  .document('users/{userId}')
-  .onCreate((snap, context) => {
-    const newData = snap.data();
-    const email = newData.email; // Assuming the saved data contains an 'email' field
 
-    const mailOptions = {
-      from: '3space.contact@gmail.com',
-      to: email,
-      subject: 'Confirmation Email',
-      text: `Hello, your data has been saved successfully!` // Customize your email message
-    };
+// Define the email content
+const mailOptions = {
+  from: "3space.contact@gmail.com",
+  to: userEmail,
+  subject: "Thank You for Joining!",
+  text: "Thank you for adding your email to our database. We appreciate your support!",
+};
 
-    return transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending email:', error);
-        return null;
-      }
-      console.log('Email sent:', info.response);
+await transporter.sendMail(mailOptions);
+
       return null;
-    });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return null;
+    }
   });

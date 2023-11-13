@@ -2,8 +2,8 @@
   // Import the functions you need from the SDKs you need
    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-   import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
-
+   import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+   import { getAuth } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js'; // Import Firebase Authentication
 //   import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
    // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,4 +33,42 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-export { db };
+
+const addUserToNewsletter = async (email, firstWord, timestamp) => {
+    await setDoc(doc(db, 'users', firstWord), {
+      email: email,
+      subscribedToMailingList: true,
+      timestamp: timestamp
+    });
+  };
+  
+  document.getElementById('newsletterForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    const firstWord = email.split('@')[0].toLowerCase();
+    const now = new Date();
+    const timestamp = now.toString();
+  
+    addUserToNewsletter(email, firstWord, timestamp)
+      .then(() => {
+        console.log('Document written with ID');
+  
+        // UI Success Handling
+        document.getElementById('newsletter-send').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('newsletter-send').classList.add('hide');
+          setTimeout(() => {
+            document.getElementById('newsletter-send').style.display = 'none';
+            document.getElementById('newsletter-send').classList.remove('hide');
+          }, 500); // Assuming your CSS transition duration is 0.3 seconds
+        }, 4000);
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+        // Handle error or UI updates here
+      });
+  
+    document.getElementById("newsletterForm").reset();
+    // Additional UI logic if needed
+  });
+  
