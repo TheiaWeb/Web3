@@ -680,3 +680,141 @@ footer {
 .privacy__section {
     padding: 20px 15%;
 }
+
+
+/*==================== COOKIE ====================*/
+.cookie__box {
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    z-index: 1000;
+    background: #9600FA;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px 0 0 8px;
+    padding: 0px 10px;
+    gap: 10px;
+
+
+}
+.cookie__box-arrow {
+    width: 15px;
+}
+.cookie__box-arrow:hover {
+    cursor: pointer;
+}
+#cookieBanner {
+   
+    width: 40px; /* Taille initiale */
+    height: 55px;
+    cursor: pointer;
+    transition: width 0.5s ease, height 0.5s ease; /* Animation */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#cookieBanner img {
+    width: 40px;
+    height: 40px;
+}
+
+#cookieBanner.expanded {
+    width: 290px; 
+    height: 55px; 
+}
+
+#cookieOptions {
+    display: none;
+}
+
+#cookieBanner.expanded #cookieOptions {
+    display: block;
+}
+
+.cookie__box-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cookie__box-switch p {
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 14px;
+}
+.cookie__save-btn {
+    border: none;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    background: none;
+    font-size: 15px;
+    background: var(--deep-purple);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.cookie__save-btn:hover {
+    cursor: pointer;
+    scale: 1.05;
+    transition: 0.3s ease;
+}
+
+/*Switch*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #421660;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #58D7AD;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #58D7AD;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}

@@ -141,9 +141,32 @@
         </div>
     </footer>
 
+    <div class="cookie__box">
+        <img   class="cookie__box-arrow" onclick="toggleCookiePanel()" src="img/arrow__cookie.png" alt="">   
+            <div id="cookieBanner">
+                <img src="img/cookie.png" alt="Cookie" />
+                <div class="cookie__box-switch"  title="Nous collectons les adresses mail pour la newsletter">
+                    <p>Necessary</p>
+                    <label class="switch">
+                        <input type="checkbox" id="statistic-switch">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+                <div class="cookie__box-switch"  title="Google Analytics permet l'amélioration continue de l'expérience utilisateur">
+                    <p title="Nous collectons les adresses mail pour la newsletter">Analytics</p>
+                    <label class="switch">
+                        <input type="checkbox" id="statistic-switch">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+                <button class="cookie__save-btn">Save</button>
+            
+            </div>
+        </div>
 
 
-    <script src="js/script.js"></script>
+
+        <script type="module" src="js/script.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('nav');

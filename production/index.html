@@ -146,9 +146,33 @@
         </div>
 
         <div class="footer__copyright">
-            <p>&copy; ThirdSpace 2023 - <span><a href="privacy.html" target="_blank" class="legals__link">Privacy policy</a></span></p>
+            <p>&copy; Third Space 2023 - <span><a href="privacy.html" target="_blank" class="legals__link">Privacy policy</a></span></p>
         </div>
     </footer>
+
+
+    <div class="cookie__box">
+        <img   class="cookie__box-arrow" onclick="toggleCookiePanel()" src="img/arrow__cookie.png" alt="">   
+            <div id="cookieBanner">
+                <img src="img/cookie.png" alt="Cookie" />
+                <div class="cookie__box-switch"  title="We collect e-mail addresses when you subscribe to our newsletter.">
+                    <p>Necessary</p>
+                    <label class="switch">
+                        <input type="checkbox" id="statistic-switch">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+                <div class="cookie__box-switch"  title="Google Analytics enables continuous improvement of the user experience">
+                    <p title="Nous collectons les adresses mail pour la newsletter">Analytics</p>
+                    <label class="switch">
+                        <input type="checkbox" id="statistic-switch">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+                <button class="cookie__save-btn">Save</button>
+            
+            </div>
+        </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
