@@ -80,6 +80,7 @@ const mailOptions = {
         </style>
       </head>
       <body>
+      
         <div class="container">
           <h1>Welcome to Our Community!</h1>
           <p>Hi there,</p>
@@ -87,13 +88,13 @@ const mailOptions = {
           <p>You'll receive cutting-edge insights, <b>early access to new features</b>, and exclusive content directly in your inbox.</p>
           <p>Connect with our community:</p>
           <div class="social-icons">
-            <a href="https://twitter.com/ThirdSpace_3" target="_blank" class="button"><img src="../production/img/twitter-logo-footer.svg" alt="Twitter">Twitter</a>
-            <a href="https://discord.gg/WBCqRV9PVr" target="_blank" class="button"><img src="../production/img/discord-logo-footer.svg" alt="Discord">Discord</a>
+            <a href="https://twitter.com/ThirdSpace_3" target="_blank" class="button"> <img src="https://thirdweb-5b016.web.app/img/twitter-logo.png" alt="Twitter"></a>
+            <a href="https://discord.gg/WBCqRV9PVr" target="_blank" class="button"><img src="https://thirdweb-5b016.web.app/img/discord-logo.png" alt="Discord"></a>
           </div>
           <div class="signature">
-            <img src="../production/img/logo-colors.png" alt="Company Logo">
             <p>Cheers,<br><strong>Third Space Team</strong></p>
             <p><span><a href="" class="link">www.3spacex.com</a></span> - <span><a href="" class="link">Privacy Policy</a></span></p>
+            <img src="https://thirdweb-5b016.web.app/img/logo-colors_mail.png" alt="Company Logo">
           </div>
         </div>
       </body>
