@@ -2,7 +2,7 @@
   // Import the functions you need from the SDKs you need
    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-   import { getFirestore, doc, setDoc, addDoc, increment, getDoc  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+   import { getFirestore, doc, setDoc, addDoc, increment, getDoc, collection } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
    import { getAuth } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js'; // Import Firebase Authentication
 //   import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"
    // TODO: Add SDKs for Firebase products that you want to use
@@ -35,58 +35,95 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 const addUserToNewsletter = async (email, firstWord, timestamp) => {
-    await setDoc(doc(db, 'users', firstWord), {
-      email: email,
-      subscribedToMailingList: true,
-      timestamp: timestamp
-    });
-  };
-  
-  document.getElementById('newsletterForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-    const email = document.getElementById('emailInput').value;
-    const firstWord = email.split('@')[0].toLowerCase();
-    const now = new Date();
-    const timestamp = now.toString();
-  
-    addUserToNewsletter(email, firstWord, timestamp)
-      .then(() => {
-        console.log('Document written with ID');
-  
-        // UI Success Handling
-        document.getElementById('newsletter-send').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('newsletter-send').classList.add('hide');
-          setTimeout(() => {
-            document.getElementById('newsletter-send').style.display = 'none';
-            document.getElementById('newsletter-send').classList.remove('hide');
-          }, 500); // Assuming your CSS transition duration is 0.3 seconds
-        }, 4000);
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-        // Handle error or UI updates here
+  const collectionRef = collection(db, 'users');
+  const userDocRef = doc(collectionRef, firstWord);
+
+  try {
+    const userDocSnapshot = await getDoc(userDocRef);
+
+    if (userDocSnapshot.exists()) {
+      // User already subscribed, display a message
+      const messageContainer = document.getElementById('newsletter-send');
+      messageContainer.innerHTML = "Thanks for filling the subscription, but you're already linked with us.<br> Stay updated on your mail and medias to stay updated.";
+      messageContainer.style.display = 'block';
+      messageContainer.style.transition = 'opacity 500ms';
+      setTimeout(() => {
+        messageContainer.style.opacity = '0'; // Hide the message container by reducing opacity
+      }, 3500);
+    } else {
+      // User does not exist, add to the newsletter list
+      await setDoc(userDocRef, {
+        email: email,
+        subscribedToMailingList: true,
+        timestamp: timestamp
       });
-  
-    document.getElementById("newsletterForm").reset();
-    // Additional UI logic if needed
-  });
+
+      // Clear any previous messages
+      const messageContainer = document.getElementById('newsletter-send');
+      messageContainer.style.opacity = '1';
+      messageContainer.innerHTML = '';
+      messageContainer.innerHTML = 'Thank you for your registration';
+
+      console.log('Document written with ID');
+
+      // UI Success Handling
+      document.getElementById('newsletter-send').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('newsletter-send').classList.add('hide');
+        setTimeout(() => {
+          document.getElementById('newsletter-send').style.display = 'none';
+          document.getElementById('newsletter-send').classList.remove('hide');
+        }, 500); // Assuming your CSS transition duration is 0.3 seconds
+      }, 4000);
+    }
+  } catch (error) {
+    console.error('Error adding document: ', error);
+    // Handle error or UI updates here
+  }
+};
+
+document.getElementById('newsletterForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const email = document.getElementById('emailInput').value;
+  const firstWord = email.split('@')[0].toLowerCase();
+  const now = new Date();
+  const timestamp = now.toString();
+
+  addUserToNewsletter(email, firstWord, timestamp)
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // Handle error or UI updates here
+    });
+
+  document.getElementById("newsletterForm").reset();
+  // Additional UI logic if needed
+});
+
+
+
   const saveSwitchStatuses = async (necessaryStatus, analyticsStatus) => {
     event.preventDefault();
     try {
-      let count = 0;
       const now = new Date();
-      const timestamp = now.toString();
-      const fileName = `status_${count}`;
+      const timestamp = now.toLocaleString().replace(/[/, ,:]/g, '_'); // Format timestamp as "day_month_year__hours_minutes"
   
-      // Get the current count from Firestore
+      // Check if the "count" document exists in Firestore
       const docRef = doc(db, 'switches', 'count');
       const docSnapshot = await getDoc(docRef);
-      
   
-      if (docSnapshot.exists()) {
-        count = docSnapshot.data().count;
+      if (!docSnapshot.exists()) {
+        // If the document doesn't exist, create it with an initial count of 0
+        await setDoc(docRef, { count: 0 });
       }
+  
+      // Get the current count from Firestore
+      const countSnapshot = await getDoc(docRef);
+      let count = countSnapshot.data().count;
+  
+      const fileName = `status_${count}_${timestamp}`; // Use count and formatted timestamp as unique identifiers
+  
+      // Increment the count in Firestore
+      await setDoc(docRef, { count: increment(1) }, { merge: true });
   
       // Save the data to Firestore
       await setDoc(doc(db, 'switches', fileName), {
@@ -96,10 +133,7 @@ const addUserToNewsletter = async (email, firstWord, timestamp) => {
         count: count,
       });
   
-      // Increment the count in Firestore
-      await setDoc(docRef, { count: increment(1) }, { merge: true });
-  
-      console.log('Switch statuses saved to Firestore.');
+      console.log('Switch statuses saved to Firestore. Count:', count);
   
     } catch (error) {
       console.error('Error saving switch statuses:', error);
@@ -118,3 +152,4 @@ const addUserToNewsletter = async (email, firstWord, timestamp) => {
   
     saveSwitchStatuses(necessaryStatus, analyticsStatus);
   });
+    
