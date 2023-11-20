@@ -37,10 +37,13 @@ function initializeCookieBanner() {
       toggleCookiePanel(); // Ou saveCookiePreferences() si cette fonction doit toujours être appelée
   });
 
-  window.addEventListener('click', function(e) {
-      if (!banner.contains(e.target) && !arrow.contains(e.target) && banner.classList.contains("expanded")) {
-          toggleCookiePanel();
-      }
+  document.addEventListener('DOMContentLoaded', () => {
+    const saveButton = document.getElementById('save-button');
+    const cookies = document.getElementById('cookieBanner');
+  
+    saveButton.addEventListener('click', () => {
+      cookies.classList.add('expanded');
+    });
   });
 
   banner.addEventListener('click', function(e) {

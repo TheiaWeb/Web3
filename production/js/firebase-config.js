@@ -34,7 +34,25 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
+
+//#region Newsletter
 const addUserToNewsletter = async (email, firstWord, timestamp) => {
+
+const necessaryStatus = localStorage.getItem('necessaryStatus');
+  const analyticsStatus = localStorage.getItem('analyticsStatus');
+
+  // If either necessaryStatus or analyticsStatus is not set, block the sending and display a message
+  if (necessaryStatus === null || analyticsStatus === null) {
+    const messageContainer = document.getElementById('newsletter-send');
+    messageContainer.innerHTML = '';
+    messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
+    messageContainer.style.display = 'block';
+    setTimeout(() => {
+      messageContainer.style.display = 'none';
+    }, 3500);
+    return; // Exit the function early
+  }
+
   const collectionRef = collection(db, 'users');
   const userDocRef = doc(collectionRef, firstWord);
 
@@ -42,8 +60,10 @@ const addUserToNewsletter = async (email, firstWord, timestamp) => {
     const userDocSnapshot = await getDoc(userDocRef);
 
     if (userDocSnapshot.exists()) {
+
       // User already subscribed, display a message
       const messageContainer = document.getElementById('newsletter-send');
+      messageContainer.innerHTML = '';
       messageContainer.innerHTML = "Thanks for filling the subscription, but you're already linked with us.<br> Stay updated on your mail and medias to stay updated.";
       messageContainer.style.display = 'block';
       messageContainer.style.transition = 'opacity 500ms';
@@ -98,11 +118,14 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
   document.getElementById("newsletterForm").reset();
   // Additional UI logic if needed
 });
-
+//#endregion
+//#region Cookies 
 
 
   const saveSwitchStatuses = async (necessaryStatus, analyticsStatus) => {
     event.preventDefault();
+    localStorage.setItem('necessaryStatus', necessaryStatus);
+    localStorage.setItem('analyticsStatus', analyticsStatus);
     try {
       const now = new Date();
       const timestamp = now.toLocaleString().replace(/[/, ,:]/g, '_'); // Format timestamp as "day_month_year__hours_minutes"
@@ -153,3 +176,4 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
     saveSwitchStatuses(necessaryStatus, analyticsStatus);
   });
     
+  //#endregion
