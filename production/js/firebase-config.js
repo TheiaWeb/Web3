@@ -36,14 +36,29 @@ const db = getFirestore(app);
 
 
 //#region Newsletter
+
+document.addEventListener('DOMContentLoaded', function () {
+  const necessaryStatus = localStorage.getItem('necessaryStatus');
+  const analyticsStatus = localStorage.getItem('analyticsStatus');
+  const messageContainer = document.getElementById('newsletter-send');
+
+  if (necessaryStatus === null || analyticsStatus === null) {
+    const registerbutton = document.getElementById('submitbutton');
+    registerbutton.style.background = "grey";
+    registerbutton.style.cursor = "not-allowed";
+    messageContainer.style.display = 'block';
+    messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
+    }
+  });
 const addUserToNewsletter = async (email, firstWord, timestamp) => {
 
-const necessaryStatus = localStorage.getItem('necessaryStatus');
+  const necessaryStatus = localStorage.getItem('necessaryStatus');
   const analyticsStatus = localStorage.getItem('analyticsStatus');
+  const messageContainer = document.getElementById('newsletter-send');
 
   // If either necessaryStatus or analyticsStatus is not set, block the sending and display a message
   if (necessaryStatus === null || analyticsStatus === null) {
-    const messageContainer = document.getElementById('newsletter-send');
+    
     messageContainer.innerHTML = '';
     messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
     messageContainer.style.display = 'block';
@@ -62,7 +77,6 @@ const necessaryStatus = localStorage.getItem('necessaryStatus');
     if (userDocSnapshot.exists()) {
 
       // User already subscribed, display a message
-      const messageContainer = document.getElementById('newsletter-send');
       messageContainer.innerHTML = '';
       messageContainer.innerHTML = "Thanks for filling the subscription, but you're already linked with us.<br> Stay updated on your mail and medias to stay updated.";
       messageContainer.style.display = 'block';
@@ -79,7 +93,6 @@ const necessaryStatus = localStorage.getItem('necessaryStatus');
       });
 
       // Clear any previous messages
-      const messageContainer = document.getElementById('newsletter-send');
       messageContainer.style.opacity = '1';
       messageContainer.innerHTML = '';
       messageContainer.innerHTML = 'Thank you for your registration';
@@ -120,8 +133,13 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
 });
 //#endregion
 //#region Cookies 
-
-
+document.addEventListener('DOMContentLoaded', (event) => {
+  // Check if the necessary data is already saved in local storage
+  if (localStorage.getItem('necessaryStatus') !== null && localStorage.getItem('analyticsStatus') !== null) {
+    // If data is found, hide the cookie consent box
+    document.getElementById('cookie__box').style.display = 'none';
+  }
+});
   const saveSwitchStatuses = async (necessaryStatus, analyticsStatus) => {
     event.preventDefault();
     localStorage.setItem('necessaryStatus', necessaryStatus);
@@ -129,7 +147,8 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
     try {
       const now = new Date();
       const timestamp = now.toLocaleString().replace(/[/, ,:]/g, '_'); // Format timestamp as "day_month_year__hours_minutes"
-  
+      const messageContainer = document.getElementById('newsletter-send');
+
       // Check if the "count" document exists in Firestore
       const docRef = doc(db, 'switches', 'count');
       const docSnapshot = await getDoc(docRef);
@@ -155,7 +174,11 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
         timestamp: timestamp,
         count: count,
       });
-  
+      const registerbutton = document.getElementById('submitbutton');
+      registerbutton.style.background = "#521380";
+      registerbutton.style.cursor = "pointer";  
+      messageContainer.innerHTML = 'Thanks for accepting the cookies, you can now submit your subscription to the whitelist !';
+
       console.log('Switch statuses saved to Firestore. Count:', count);
   
     } catch (error) {
