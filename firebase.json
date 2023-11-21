@@ -15,12 +15,14 @@
       ]
     }
   ],
-  "hosting": {
-    "public": "production",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+    "hosting": {
+      "public": "public",
+      "rewrites": [
+        {
+          "source": "/",
+          "destination": "https://3spacex.com/",
+          "type": 301
+        }
+      ]
+    }
 }
