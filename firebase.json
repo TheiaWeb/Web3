@@ -16,11 +16,13 @@
     }
   ],
   "hosting": {
-    "public": "production",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "https://votre-domaine-personnalise.com",
+        "type": 301
+      }
     ]
   }
 }
