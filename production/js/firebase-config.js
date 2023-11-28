@@ -37,36 +37,36 @@ const db = getFirestore(app);
 
 //#region Newsletter
 
-document.addEventListener('DOMContentLoaded', function () {
-  const necessaryStatus = localStorage.getItem('necessaryStatus');
-  const analyticsStatus = localStorage.getItem('analyticsStatus');
-  const messageContainer = document.getElementById('newsletter-send');
+// document.addEventListener('DOMContentLoaded', function () {
+//   const necessaryStatus = localStorage.getItem('necessaryStatus');
+//   const analyticsStatus = localStorage.getItem('analyticsStatus');
+//   const messageContainer = document.getElementById('newsletter-send');
 
-  if (necessaryStatus === null || analyticsStatus === null) {
-    const registerbutton = document.getElementById('submitbutton');
-    registerbutton.style.background = "grey";
-    registerbutton.style.cursor = "not-allowed";
-    messageContainer.style.display = 'block';
-    messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
-    }
-  });
+//   if (necessaryStatus === null || analyticsStatus === null) {
+//     const registerbutton = document.getElementById('submitbutton');
+//     registerbutton.style.background = "grey";
+//     registerbutton.style.cursor = "not-allowed";
+//     messageContainer.style.display = 'block';
+//     messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
+//     }
+//   });
 const addUserToNewsletter = async (email, firstWord, timestamp) => {
 
   const necessaryStatus = localStorage.getItem('necessaryStatus');
   const analyticsStatus = localStorage.getItem('analyticsStatus');
   const messageContainer = document.getElementById('newsletter-send');
 
-  // If either necessaryStatus or analyticsStatus is not set, block the sending and display a message
-  if (necessaryStatus === null || analyticsStatus === null) {
+  // // If either necessaryStatus or analyticsStatus is not set, block the sending and display a message
+  // if (necessaryStatus === null || analyticsStatus === null) {
     
-    messageContainer.innerHTML = '';
-    messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
-    messageContainer.style.display = 'block';
-    setTimeout(() => {
-      messageContainer.style.display = 'none';
-    }, 3500);
-    return; // Exit the function early
-  }
+  //   messageContainer.innerHTML = '';
+  //   messageContainer.innerHTML = 'Please enable necessary and analytics switches to subscribe.';
+  //   messageContainer.style.display = 'block';
+  //   setTimeout(() => {
+  //     messageContainer.style.display = 'none';
+  //   }, 3500);
+  //   return; // Exit the function early
+  // }
 
   const collectionRef = collection(db, 'users');
   const userDocRef = doc(collectionRef, firstWord);
