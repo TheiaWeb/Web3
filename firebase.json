@@ -16,11 +16,11 @@
     }
   ],
   "hosting": {
-    "public": "public",
+    "public": "production",
     "rewrites": [
       {
         "source": "/",
-        "destination": "https://votre-domaine-personnalise.com",
+        "destination": "https://3spacex.com/",
         "type": 301
       }
     ]
